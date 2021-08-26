@@ -20,6 +20,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 import org.opensearch.security.DefaultObjectMapper;
+import org.opensearch.security.privileges.PrivilegesEvaluator;
 import org.opensearch.security.securityconf.impl.SecurityDynamicConfiguration;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableList;
@@ -38,7 +39,6 @@ import org.opensearch.security.configuration.AdminDNs;
 import org.opensearch.security.configuration.ConfigurationRepository;
 import org.opensearch.security.dlic.rest.validation.AbstractConfigurationValidator;
 import org.opensearch.security.dlic.rest.validation.RolesMappingValidator;
-import org.opensearch.security.privileges.PrivilegesEvaluator;
 import org.opensearch.security.ssl.transport.PrincipalExtractor;
 import org.opensearch.threadpool.ThreadPool;
 
@@ -58,8 +58,8 @@ public class RolesMappingApiAction extends PatchableResourceApiAction {
 
 	@Inject
 	public RolesMappingApiAction(final Settings settings, final Path configPath, final RestController controller, final Client client,
-                                 final AdminDNs adminDNs, final ConfigurationRepository cl, final ClusterService cs,
-                                 final PrincipalExtractor principalExtractor, final PrivilegesEvaluator evaluator, ThreadPool threadPool, AuditLog auditLog) {
+								 final AdminDNs adminDNs, final ConfigurationRepository cl, final ClusterService cs,
+								 final PrincipalExtractor principalExtractor, final PrivilegesEvaluator evaluator, ThreadPool threadPool, AuditLog auditLog) {
 		super(settings, configPath, controller, client, adminDNs, cl, cs, principalExtractor, evaluator, threadPool, auditLog);
 	}
 

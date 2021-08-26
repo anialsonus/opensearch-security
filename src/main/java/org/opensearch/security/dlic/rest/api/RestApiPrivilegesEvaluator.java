@@ -75,7 +75,7 @@ public class RestApiPrivilegesEvaluator {
 	private final Boolean roleBasedAccessEnabled;
 
 	public RestApiPrivilegesEvaluator(Settings settings, AdminDNs adminDNs, PrivilegesEvaluator privilegesEvaluator, PrincipalExtractor principalExtractor, Path configPath,
-			ThreadPool threadPool) {
+									  ThreadPool threadPool) {
 
 		this.adminDNs = adminDNs;
 		this.privilegesEvaluator = privilegesEvaluator;

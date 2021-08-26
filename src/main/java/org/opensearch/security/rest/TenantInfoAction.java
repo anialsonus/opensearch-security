@@ -40,6 +40,7 @@ import java.util.SortedMap;
 import com.google.common.base.Strings;
 
 import org.opensearch.security.configuration.ConfigurationRepository;
+import org.opensearch.security.privileges.PrivilegesEvaluator;
 import org.opensearch.security.securityconf.DynamicConfigFactory;
 import org.opensearch.security.securityconf.impl.CType;
 import org.opensearch.security.securityconf.RoleMappings;
@@ -59,7 +60,6 @@ import org.opensearch.rest.RestController;
 import org.opensearch.rest.RestRequest;
 import org.opensearch.rest.RestStatus;
 import org.opensearch.security.configuration.AdminDNs;
-import org.opensearch.security.privileges.PrivilegesEvaluator;
 import org.opensearch.security.support.ConfigConstants;
 import org.opensearch.security.user.User;
 import org.opensearch.threadpool.ThreadPool;
@@ -82,8 +82,8 @@ public class TenantInfoAction extends BaseRestHandler {
     private final AdminDNs adminDns;
     private final ConfigurationRepository configurationRepository;
 
-    public TenantInfoAction(final Settings settings, final RestController controller, 
-    		final PrivilegesEvaluator evaluator, final ThreadPool threadPool, final ClusterService clusterService, final AdminDNs adminDns,
+    public TenantInfoAction(final Settings settings, final RestController controller,
+                            final PrivilegesEvaluator evaluator, final ThreadPool threadPool, final ClusterService clusterService, final AdminDNs adminDns,
                             final ConfigurationRepository configurationRepository) {
         super();
         this.threadContext = threadPool.getThreadContext();

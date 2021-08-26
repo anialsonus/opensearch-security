@@ -20,13 +20,12 @@ import org.opensearch.security.auth.BackendRegistry;
 import org.opensearch.security.configuration.AdminDNs;
 import org.opensearch.security.configuration.CompatConfig;
 import org.opensearch.security.configuration.DlsFlsRequestValve;
-import org.opensearch.security.privileges.PrivilegesEvaluator;
+import org.opensearch.security.privileges.OpenSearchPrivilegesEvaluator;
 import org.opensearch.security.resolver.IndexResolverReplacer;
 import org.opensearch.security.support.ConfigConstants;
 import org.opensearch.security.support.WildcardMatcher;
 import com.google.common.collect.ImmutableSet;
 
-import org.junit.Assert;
 import org.opensearch.client.Client;
 import org.opensearch.cluster.service.ClusterService;
 import org.opensearch.common.settings.Settings;
@@ -72,7 +71,7 @@ public class SecurityFilterTest {
         final SecurityFilter filter = new SecurityFilter(
                 mock(Client.class),
                 settings,
-                mock(PrivilegesEvaluator.class),
+                mock(OpenSearchPrivilegesEvaluator.class),
                 mock(AdminDNs.class),
                 mock(DlsFlsRequestValve.class),
                 mock(AuditLog.class),

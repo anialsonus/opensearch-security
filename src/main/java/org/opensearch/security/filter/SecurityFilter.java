@@ -36,6 +36,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.opensearch.security.auth.RolesInjector;
+import org.opensearch.security.privileges.PrivilegesEvaluator;
 import org.opensearch.security.resolver.IndexResolverReplacer;
 import org.opensearch.security.support.WildcardMatcher;
 import com.google.common.annotations.VisibleForTesting;
@@ -88,7 +89,6 @@ import org.opensearch.security.compliance.ComplianceConfig;
 import org.opensearch.security.configuration.AdminDNs;
 import org.opensearch.security.configuration.CompatConfig;
 import org.opensearch.security.configuration.DlsFlsRequestValve;
-import org.opensearch.security.privileges.PrivilegesEvaluator;
 import org.opensearch.security.privileges.PrivilegesEvaluatorResponse;
 import org.opensearch.tasks.Task;
 import org.opensearch.threadpool.ThreadPool;

@@ -57,6 +57,7 @@ import org.opensearch.security.configuration.Salt;
 import org.opensearch.security.dlic.rest.api.SecurityRestApiActions;
 import org.opensearch.security.filter.SecurityRestFilter;
 import org.opensearch.security.http.SecurityHttpServerTransport;
+import org.opensearch.security.privileges.PrivilegesEvaluator;
 import org.opensearch.security.ssl.OpenSearchSecuritySSLPlugin;
 import org.opensearch.security.ssl.rest.SecuritySSLReloadCertsAction;
 import org.opensearch.security.ssl.rest.SecuritySSLCertsInfoAction;
@@ -133,7 +134,7 @@ import org.opensearch.security.compliance.ComplianceIndexingOperationListener;
 import org.opensearch.security.filter.SecurityFilter;
 import org.opensearch.security.http.SecurityNonSslHttpServerTransport;
 import org.opensearch.security.http.XFFResolver;
-import org.opensearch.security.privileges.PrivilegesEvaluator;
+import org.opensearch.security.privileges.OpenSearchPrivilegesEvaluator;
 import org.opensearch.security.privileges.PrivilegesInterceptor;
 import org.opensearch.security.resolver.IndexResolverReplacer;
 import org.opensearch.security.rest.DashboardsInfoAction;
@@ -794,7 +795,7 @@ public final class OpenSearchSecurityPlugin extends OpenSearchSecuritySSLPlugin 
 
         // DLS-FLS is enabled if not client and not disabled and not SSL only.
         final boolean dlsFlsEnabled = !SSLConfig.isSslOnlyMode();
-        evaluator = new PrivilegesEvaluator(clusterService, threadPool, cr, resolver, auditLog,
+        evaluator = new OpenSearchPrivilegesEvaluator(clusterService, threadPool, cr, resolver, auditLog,
                 settings, privilegesInterceptor, cih, irr, dlsFlsEnabled);
 
         sf = new SecurityFilter(localClient, settings, evaluator, adminDns, dlsFlsValve, auditLog, threadPool, cs, compatConfig, irr, backendRegistry);

@@ -20,6 +20,7 @@ import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 
+import org.opensearch.security.privileges.PrivilegesEvaluator;
 import org.opensearch.security.securityconf.impl.WhitelistingSettings;
 import org.opensearch.security.auditlog.config.AuditConfig;
 import org.opensearch.Version;
@@ -50,7 +51,6 @@ import org.opensearch.security.configuration.AdminDNs;
 import org.opensearch.security.configuration.ConfigurationRepository;
 import org.opensearch.security.dlic.rest.validation.AbstractConfigurationValidator;
 import org.opensearch.security.dlic.rest.validation.NoOpValidator;
-import org.opensearch.security.privileges.PrivilegesEvaluator;
 import org.opensearch.security.securityconf.Migration;
 import org.opensearch.security.ssl.transport.PrincipalExtractor;
 import org.opensearch.threadpool.ThreadPool;

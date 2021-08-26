@@ -16,7 +16,7 @@
 package org.opensearch.security.dlic.rest.api;
 
 import org.opensearch.security.configuration.AdminDNs;
-import org.opensearch.security.privileges.PrivilegesEvaluator;
+import org.opensearch.security.privileges.OpenSearchPrivilegesEvaluator;
 import org.opensearch.security.ssl.transport.PrincipalExtractor;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.rest.RestRequest;
@@ -39,7 +39,7 @@ public class RestApiPrivilegesEvaluatorTest {
     public void setUp() {
         this.privilegesEvaluator = new RestApiPrivilegesEvaluator(Settings.EMPTY,
                 mock(AdminDNs.class),
-                mock(PrivilegesEvaluator.class),
+                mock(OpenSearchPrivilegesEvaluator.class),
                 mock(PrincipalExtractor.class),
                 mock(Path.class),
                 mock(ThreadPool.class));

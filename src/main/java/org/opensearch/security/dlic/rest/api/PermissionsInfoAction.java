@@ -62,8 +62,8 @@ public class PermissionsInfoAction extends BaseRestHandler {
 	private final ConfigurationRepository configurationRepository;
 
 	protected PermissionsInfoAction(final Settings settings, final Path configPath, final RestController controller, final Client client,
-                                    final AdminDNs adminDNs, final ConfigurationRepository configurationRepository, final ClusterService cs,
-                                    final PrincipalExtractor principalExtractor, final PrivilegesEvaluator privilegesEvaluator, ThreadPool threadPool, AuditLog auditLog) {
+									final AdminDNs adminDNs, final ConfigurationRepository configurationRepository, final ClusterService cs,
+									final PrincipalExtractor principalExtractor, final PrivilegesEvaluator privilegesEvaluator, ThreadPool threadPool, AuditLog auditLog) {
 		super();
 		this.threadPool = threadPool;
 		this.privilegesEvaluator = privilegesEvaluator;

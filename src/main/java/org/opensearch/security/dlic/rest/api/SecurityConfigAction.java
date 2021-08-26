@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.opensearch.security.dlic.rest.validation.SecurityConfigValidator;
+import org.opensearch.security.privileges.PrivilegesEvaluator;
 import org.opensearch.security.securityconf.impl.CType;
 import org.opensearch.security.securityconf.impl.SecurityDynamicConfiguration;
 import com.google.common.collect.ImmutableList;
@@ -37,7 +38,6 @@ import org.opensearch.security.auditlog.AuditLog;
 import org.opensearch.security.configuration.AdminDNs;
 import org.opensearch.security.configuration.ConfigurationRepository;
 import org.opensearch.security.dlic.rest.validation.AbstractConfigurationValidator;
-import org.opensearch.security.privileges.PrivilegesEvaluator;
 import org.opensearch.security.ssl.transport.PrincipalExtractor;
 import org.opensearch.security.support.ConfigConstants;
 import org.opensearch.threadpool.ThreadPool;
