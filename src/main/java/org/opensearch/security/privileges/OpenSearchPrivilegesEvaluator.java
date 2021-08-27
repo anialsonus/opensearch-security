@@ -121,12 +121,10 @@ public class OpenSearchPrivilegesEvaluator extends AbstractPrivilegesEvaluator {
     private final AuditLog auditLog;
     private ThreadContext threadContext;
 
-    private PrivilegesInterceptor privilegesInterceptor;
 
     private final boolean checkSnapshotRestoreWritePrivileges;
 
     private final ClusterInfoHolder clusterInfoHolder;
-    private ConfigModel configModel;
     private final IndexResolverReplacer irr;
     private final SnapshotRestoreEvaluator snapshotRestoreEvaluator;
     private final SecurityIndexAccessEvaluator securityIndexAccessEvaluator;
@@ -136,7 +134,6 @@ public class OpenSearchPrivilegesEvaluator extends AbstractPrivilegesEvaluator {
     private final DlsFlsEvaluator dlsFlsEvaluator;
 
     private final boolean dlsFlsEnabled;
-    private DynamicConfigModel dcm;
 
     public OpenSearchPrivilegesEvaluator(final ClusterService clusterService, final ThreadPool threadPool,
                                          final ConfigurationRepository configurationRepository, final IndexNameExpressionResolver resolver,

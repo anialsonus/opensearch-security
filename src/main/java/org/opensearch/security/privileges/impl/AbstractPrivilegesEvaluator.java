@@ -16,9 +16,9 @@ import java.util.Set;
 
 public abstract class AbstractPrivilegesEvaluator implements PrivilegesEvaluator {
 
-    ConfigModel configModel;
-    DynamicConfigModel dcm;
-    PrivilegesInterceptor privilegesInterceptor;
+    protected ConfigModel configModel;
+    protected DynamicConfigModel dcm;
+    protected PrivilegesInterceptor privilegesInterceptor;
 
     protected AbstractPrivilegesEvaluator(PrivilegesInterceptor privilegesInterceptor) {
         this.privilegesInterceptor = privilegesInterceptor;
