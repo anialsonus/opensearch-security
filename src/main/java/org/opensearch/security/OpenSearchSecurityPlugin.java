@@ -58,6 +58,8 @@ import org.opensearch.security.dlic.rest.api.SecurityRestApiActions;
 import org.opensearch.security.filter.SecurityRestFilter;
 import org.opensearch.security.http.SecurityHttpServerTransport;
 import org.opensearch.security.privileges.PrivilegesEvaluator;
+import org.opensearch.security.privileges.PrivilegesEvaluatorFactory;
+import org.opensearch.security.privileges.impl.PrivilegesEvaluatorFactoryImpl;
 import org.opensearch.security.ssl.OpenSearchSecuritySSLPlugin;
 import org.opensearch.security.ssl.rest.SecuritySSLReloadCertsAction;
 import org.opensearch.security.ssl.rest.SecuritySSLCertsInfoAction;
@@ -795,8 +797,25 @@ public final class OpenSearchSecurityPlugin extends OpenSearchSecuritySSLPlugin 
 
         // DLS-FLS is enabled if not client and not disabled and not SSL only.
         final boolean dlsFlsEnabled = !SSLConfig.isSslOnlyMode();
-        evaluator = new OpenSearchPrivilegesEvaluator(clusterService, threadPool, cr, resolver, auditLog,
-                settings, privilegesInterceptor, cih, irr, dlsFlsEnabled);
+
+        log.debug("Trying to create {} evaluator", settings.get(ConfigConstants.SECURITY_PRIVILEGES_EVALUATOR));
+
+        try {
+            PrivilegesEvaluatorFactory privilegesEvaluatorFactory = new PrivilegesEvaluatorFactoryImpl();
+            evaluator = privilegesEvaluatorFactory.createPrivilegesEvaluator(
+                    clusterService,
+                    threadPool,
+                    cr,
+                    resolver,
+                    auditLog,
+                    settings,
+                    privilegesInterceptor,
+                    cih,
+                    irr,
+                    dlsFlsEnabled);
+        } catch (Exception e) {
+            throw new OpenSearchException("Cannot create privileges evaluator: ", e);
+        }
 
         sf = new SecurityFilter(localClient, settings, evaluator, adminDns, dlsFlsValve, auditLog, threadPool, cs, compatConfig, irr, backendRegistry);
 
@@ -1021,6 +1040,9 @@ public final class OpenSearchSecurityPlugin extends OpenSearchSecuritySSLPlugin 
             settings.add(Setting.boolSetting(ConfigConstants.SECURITY_UNSUPPORTED_LOAD_STATIC_RESOURCES, true, Property.NodeScope, Property.Filtered));
             settings.add(Setting.boolSetting(ConfigConstants.SECURITY_SSL_CERT_RELOAD_ENABLED, false, Property.NodeScope, Property.Filtered));
             settings.add(Setting.boolSetting(ConfigConstants.SECURITY_UNSUPPORTED_ACCEPT_INVALID_CONFIG, false, Property.NodeScope, Property.Filtered));
+
+            // Privilege Evaluator Setting
+            settings.add(Setting.simpleString(ConfigConstants.SECURITY_PRIVILEGES_EVALUATOR, "opensearch", Property.NodeScope, Property.Filtered));
         }
         
         return settings;

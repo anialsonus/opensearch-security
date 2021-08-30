@@ -280,4 +280,7 @@ public class ConfigConstants {
         }
         return ImmutableSet.copyOf(list);
     }
+
+    // Privilege Evaluator configs
+    public static final String SECURITY_PRIVILEGES_EVALUATOR = "plugins.security.privileges.evaluator";
 }
